@@ -3,7 +3,7 @@ namespace :dev do
   task setup: :environment do
     p "Cadastrando categorias"
     categories = %w(Ferramentas Eletronicos Alimentos )
-    categories.each do |categorie|
+    10.times do |i|
       Categorie.create!(
         name: Faker::Lorem.word,
         codCategorie: Faker::Number.number(digits: 10)
@@ -27,6 +27,32 @@ namespace :dev do
         saleCost: Faker::Commerce.price,
         avaliable: Faker::Number.between(from: 10, to: 100),
         categorie: Categorie.all.sample
+    )
+    end
+    p "Cadastrando Enderecos"
+    10.times do |i|
+      Address.create!(
+        city: Faker::Address.city,
+        street: Faker::Address.street_name,
+        neighborhood: Faker::Address.street_address ,
+        number: Faker::Address.building_number,
+        complement: Faker::Address.full_address,
+        state: Faker::Address.state,
+        zipcode: Faker::Address.zip_code
+    )
+    end
+    p "Cadastrando Fornecedores"
+    10.times do |i|
+      Provider.create!(
+        corporateName: Faker::Company.name,
+        fantasyName: Faker::Company.industry,
+        phone: Faker::PhoneNumber.cell_phone,
+        cnpj: Faker::Company.brazilian_company_number,
+        stateRegistration: Faker::Company.spanish_organisation_number,
+        email: Faker::Internet.email,
+        business: Faker::Company.type,
+        codeProvider: Faker::Number.between(from: 10, to: 100),
+        address: Address.all.sample
     )
     end 
   end
