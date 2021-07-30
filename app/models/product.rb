@@ -1,5 +1,6 @@
 class Product < ApplicationRecord
     belongs_to :categorie
+    belongs_to :provider
 
     def name_categorie
         self.categorie.name
@@ -9,11 +10,18 @@ class Product < ApplicationRecord
         self.categorie.codCategorie
     end
 
+    def corporateName_provider
+        self.provider.corporateName
+    end
+
+    def fantasyName_provider
+        self.provider.fantasyName
+    end
+
     def as_json(options={})
         super(
             root: true,
-            methods: [:name_categorie, :cod_categorie]
+            methods: [:name_categorie, :cod_categorie, :corporateName_provider, :fantasyName_provider]
         )
     end
 end
-
