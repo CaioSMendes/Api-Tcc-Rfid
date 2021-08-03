@@ -13,6 +13,19 @@ namespace :dev do
         zipcode: Faker::Address.zip_code
     )
     end
+    p "Cadastrando Clientes"
+    30.times do |i|
+      Client.create!(
+        corporateName: Faker::Company.name,
+        fantasyName: Faker::Company.industry,
+        name: Faker::Name.name_with_middle,
+        phone: Faker::PhoneNumber.cell_phone,
+        cnpj: Faker::Company.brazilian_company_number,
+        email: Faker::Internet.email,
+        codeClient: Faker::Number.between(from: 10, to: 100),
+        address: Address.all.sample
+    )
+    end 
     p "Cadastrando Fornecedores"
     30.times do |i|
       Provider.create!(
@@ -58,3 +71,4 @@ namespace :dev do
   end
 
 end
+

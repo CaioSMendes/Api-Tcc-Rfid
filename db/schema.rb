@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_29_225644) do
+ActiveRecord::Schema.define(version: 2021_08_03_142905) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,6 +32,20 @@ ActiveRecord::Schema.define(version: 2021_07_29_225644) do
     t.string "codCategorie"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "clients", force: :cascade do |t|
+    t.string "corporateName"
+    t.string "fantasyName"
+    t.string "name"
+    t.string "phone"
+    t.string "cnpj"
+    t.string "email"
+    t.string "codeClient"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "address_id", null: false
+    t.index ["address_id"], name: "index_clients_on_address_id"
   end
 
   create_table "products", force: :cascade do |t|
@@ -72,6 +86,7 @@ ActiveRecord::Schema.define(version: 2021_07_29_225644) do
     t.index ["address_id"], name: "index_providers_on_address_id"
   end
 
+  add_foreign_key "clients", "addresses"
   add_foreign_key "products", "categories", column: "categorie_id"
   add_foreign_key "products", "providers"
   add_foreign_key "providers", "addresses"

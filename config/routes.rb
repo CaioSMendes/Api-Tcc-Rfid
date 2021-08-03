@@ -4,5 +4,6 @@ Rails.application.routes.draw do
     resources :products
     resources :addresses
     resources :providers
+    resources :clients
   end
 end
