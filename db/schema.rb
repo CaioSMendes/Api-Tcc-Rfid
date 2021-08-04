@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_04_022255) do
+ActiveRecord::Schema.define(version: 2021_08_04_122413) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,8 +39,10 @@ ActiveRecord::Schema.define(version: 2021_08_04_022255) do
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "product_id", null: false
     t.bigint "provider_id", null: false
+    t.bigint "tax_id", null: false
     t.index ["product_id"], name: "index_buys_on_product_id"
     t.index ["provider_id"], name: "index_buys_on_provider_id"
+    t.index ["tax_id"], name: "index_buys_on_tax_id"
   end
 
   create_table "categories", force: :cascade do |t|
@@ -114,16 +116,30 @@ ActiveRecord::Schema.define(version: 2021_08_04_022255) do
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "product_id", null: false
     t.bigint "client_id", null: false
+    t.bigint "tax_id", null: false
     t.index ["client_id"], name: "index_sells_on_client_id"
     t.index ["product_id"], name: "index_sells_on_product_id"
+    t.index ["tax_id"], name: "index_sells_on_tax_id"
+  end
+
+  create_table "taxes", force: :cascade do |t|
+    t.float "shipping"
+    t.float "costAdd"
+    t.float "ipi"
+    t.float "icms"
+    t.text "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   add_foreign_key "buys", "products"
   add_foreign_key "buys", "providers"
+  add_foreign_key "buys", "taxes"
   add_foreign_key "clients", "addresses"
   add_foreign_key "products", "categories", column: "categorie_id"
   add_foreign_key "products", "providers"
   add_foreign_key "providers", "addresses"
   add_foreign_key "sells", "clients"
   add_foreign_key "sells", "products"
+  add_foreign_key "sells", "taxes"
 end

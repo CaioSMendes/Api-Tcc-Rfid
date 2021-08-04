@@ -1,6 +1,16 @@
 namespace :dev do
   desc "TODO"
   task setup: :environment do
+    p "Cadastrando Taxas"
+    30.times do |i|
+      Tax.create!(
+        shipping: Faker::Number.decimal(l_digits: 2),
+        costAdd: Faker::Number.decimal(l_digits: 2),
+        ipi: Faker::Number.decimal(l_digits: 2),
+        icms: Faker::Number.decimal(l_digits: 2),
+        description: Faker::Lorem.sentence
+    )
+    end 
     p "Cadastrando Enderecos"
     30.times do |i|
       Address.create!(
@@ -79,7 +89,8 @@ namespace :dev do
         description: Faker::ElectricalComponents.electromechanical,
         sell: Faker::Number.between(from: 1, to: 500),
         product: Product.all.sample,
-        client: Client.all.sample
+        client: Client.all.sample,
+        tax: Tax.all.sample
     )
     end 
     p "Cadastrando Compras"
@@ -93,7 +104,8 @@ namespace :dev do
         description: Faker::ElectricalComponents.electromechanical,
         buy: Faker::Number.between(from: 1, to: 500),
         product: Product.all.sample,
-        provider: Provider.all.sample
+        provider: Provider.all.sample,
+        tax: Tax.all.sample
     )
     end 
     puts "Finalizado com sucesso"

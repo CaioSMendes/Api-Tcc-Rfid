@@ -127,17 +127,28 @@ rails g migration add_address_to_provider address:references
     end 
 
     6 paaso 
-
-
-
+    rails g scaffold Tax shipping:float costAdd:float ipi:float icms:float
+    - rails g migration add_tax_to_sell tax:references
+    - rails g migration add_tax_to_buy tax:references
+    
+    p "Cadastrando Taxas"
+        30.times do |i|
+          Tax.create!(
+            shipping: Faker::Number.decimal(l_digits: 2),
+            costAdd: Faker::Number.decimal(l_digits: 2),
+            ipi: Faker::Number.decimal(l_digits: 2),
+            icms Faker::Number.decimal(l_digits: 2)
+        )
+        end 
 upar no git 
 
 1 - git add .
 2- git commit -m "comentario"
 3- git push --set-upstream origin providers
 
-shipping:float costAdd:float ipi:float icms:float
-
 bundle exec erd -> gerar pdf com BD 
 
 rails dev:setup  -> rodar task seed
+
+
+

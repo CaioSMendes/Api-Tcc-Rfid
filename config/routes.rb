@@ -7,5 +7,6 @@ Rails.application.routes.draw do
     resources :clients
     resources :buys
     resources :sells
+    resources :taxes
   end
 end
