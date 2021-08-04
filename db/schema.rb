@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_04_132523) do
+ActiveRecord::Schema.define(version: 2021_08_04_142958) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,14 @@ ActiveRecord::Schema.define(version: 2021_08_04_132523) do
     t.string "zipcode"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "bluetoohsearches", force: :cascade do |t|
+    t.string "rfidCode"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "product_id", null: false
+    t.index ["product_id"], name: "index_bluetoohsearches_on_product_id"
   end
 
   create_table "buys", force: :cascade do |t|
@@ -142,6 +150,7 @@ ActiveRecord::Schema.define(version: 2021_08_04_132523) do
     t.index ["sell_id"], name: "index_wallets_on_sell_id"
   end
 
+  add_foreign_key "bluetoohsearches", "products"
   add_foreign_key "buys", "products"
   add_foreign_key "buys", "providers"
   add_foreign_key "buys", "taxes"

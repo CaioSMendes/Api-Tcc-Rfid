@@ -9,5 +9,6 @@ Rails.application.routes.draw do
     resources :sells
     resources :taxes
     resources :wallets
+    resources :bluetoohsearches
   end
 end

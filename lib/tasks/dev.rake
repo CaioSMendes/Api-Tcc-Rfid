@@ -116,6 +116,13 @@ namespace :dev do
         buy: Buy.all.sample
     )
     end 
+    p "Cadastrando Buscas para o Bluetooh"
+    30.times do |i|
+      Bluetoohsearch.create!(
+        rfidCode: Faker::Barcode.upc_e,
+        product: Product.all.sample
+    )
+    end
     puts "Finalizado com sucesso"
   end
 end
