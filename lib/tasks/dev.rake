@@ -68,7 +68,35 @@ namespace :dev do
         provider: Provider.all.sample
     )
     end
+    p "Cadastrando Vendas"
+    30.times do |i|
+      Sell.create!(
+        price: Faker::Commerce.price,
+        quantity: Faker::Number.between(from: 1, to: 500),
+        dataSell: Faker::Date.in_date_period,
+        discount: Faker::Number.between(from: 10, to: 100),
+        measurement: Faker::Measurement.height,
+        description: Faker::ElectricalComponents.electromechanical,
+        sell: Faker::Number.between(from: 1, to: 500),
+        product: Product.all.sample,
+        client: Client.all.sample
+    )
+    end 
+    p "Cadastrando Compras"
+    30.times do |i|
+      Buy.create!(
+        price: Faker::Commerce.price,
+        quantity: Faker::Number.between(from: 1, to: 500),
+        dateBuy: Faker::Date.in_date_period,
+        discount: Faker::Number.between(from: 10, to: 100),
+        measurement: Faker::Measurement.height,
+        description: Faker::ElectricalComponents.electromechanical,
+        buy: Faker::Number.between(from: 1, to: 500),
+        product: Product.all.sample,
+        provider: Provider.all.sample
+    )
+    end 
+    puts "Finalizado com sucesso"
   end
-
 end
 

@@ -84,13 +84,60 @@ rails g migration add_address_to_provider address:references
 
     4 passo
     rails g scaffold Client corporateName:string fantasyName:string name:string phone:string cnpj:string email:string codeClient:string
-    rails g migration add_address_to_client address:references
+    - rails g migration add_address_to_client address:references
 
     5 passo
     gerar tabelas Sell e Buy
-    rails g scaffold sell price:float quantity:integer nameProduct:string dataSell:date discount:float measurement:float description:text
-    rails g scaffold buy price:float quantity:integer nameProduct dateBuy:date discount:float measurement:float description:text ipi:float icms:float shipping:float costAdd:float
-    rails g migration add_product_to_sell product:references
-    rails g migration add_product_to_buy product:references
+    rails g scaffold sell price:float quantity:integer dataSell:date discount:float measurement:float description:text sell:float
+    - rails g migration add_product_to_sell product:references
+    - rails g migration add_client_to_sell client:references
+
+    p "Cadastrando Vendas"
+    30.times do |i|
+      Sell.create!(
+        price: Faker::Commerce.price,
+        quantity: Faker::Number.between(from: 1, to: 500),
+        dateBuy: Faker::Date.in_date_period,
+        discount: Faker::Number.between(from: 10, to: 100),
+        measurement: Faker::Measurement.height,
+        description: Faker::ElectricalComponents.electromechanical,
+        sell: Faker::Number.between(from: 1, to: 500)
+        product: Product.all.sample
+        client: Client.all.sample
+    )
+    end 
+
+    rails g scaffold buy price:float quantity:integer dateBuy:date discount:float measurement:float description:text buy:float
+    - rails g migration add_product_to_buy product:references
+    - rails g migration add_provider_to_buy provider:references
+
+    p "Cadastrando Compras"
+    30.times do |i|
+      Buy.create!(
+        price: Faker::Commerce.price,
+        quantity: Faker::Number.between(from: 1, to: 500),
+        dataSell: Faker::Date.in_date_period,
+        discount: Faker::Number.between(from: 10, to: 100),
+        measurement: Faker::Measurement.height,
+        description: Faker::ElectricalComponents.electromechanical,
+        buy: Faker::Number.between(from: 1, to: 500)
+        product: Product.all.sample
+        provider: Provider.all.sample
+    )
+    end 
+
+    6 paaso 
 
 
+
+upar no git 
+
+1 - git add .
+2- git commit -m "comentario"
+3- git push --set-upstream origin providers
+
+shipping:float costAdd:float ipi:float icms:float
+
+bundle exec erd -> gerar pdf com BD 
+
+rails dev:setup  -> rodar task seed

@@ -5,5 +5,7 @@ Rails.application.routes.draw do
     resources :addresses
     resources :providers
     resources :clients
+    resources :buys
+    resources :sells
   end
 end
