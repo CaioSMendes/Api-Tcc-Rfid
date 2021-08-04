@@ -4,7 +4,7 @@ class ProductsController < ApplicationController
   # GET /products
   def index
     @products = Product.all
-
+    filter_by_query if params[:q]
     render json: @products
   end
 
@@ -37,6 +37,10 @@ class ProductsController < ApplicationController
   def destroy
     @product.destroy
   end
+
+  def filter_by_query
+    @products = @products.ransack(name_cont: params[:q]).result  
+  end 
 
   private
     # Use callbacks to share common setup or constraints between actions.

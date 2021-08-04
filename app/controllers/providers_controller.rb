@@ -4,7 +4,7 @@ class ProvidersController < ApplicationController
   # GET /providers
   def index
     @providers = Provider.all
-
+    filter_by_query if params[:q]
     render json: @providers
   end
 
@@ -37,6 +37,10 @@ class ProvidersController < ApplicationController
   def destroy
     @provider.destroy
   end
+
+  def filter_by_query
+    @providers = @providers.ransack(corporateName_or_fantasyName_cont: params[:q]).result  
+  end 
 
   private
     # Use callbacks to share common setup or constraints between actions.

@@ -4,7 +4,7 @@ class CategoriesController < ApplicationController
   # GET /categories
   def index
     @categories = Categorie.all
-
+    filter_by_query if params[:q]
     render json: @categories
   end
 
@@ -37,6 +37,10 @@ class CategoriesController < ApplicationController
   def destroy
     @category.destroy
   end
+
+  def filter_by_query
+    @categories = @categories.ransack(name_cont: params[:q]).result  
+  end 
 
   private
     # Use callbacks to share common setup or constraints between actions.

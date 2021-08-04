@@ -4,7 +4,7 @@ class ClientsController < ApplicationController
   # GET /clients
   def index
     @clients = Client.all
-
+    filter_by_query if params[:q]
     render json: @clients
   end
 
@@ -37,6 +37,10 @@ class ClientsController < ApplicationController
   def destroy
     @client.destroy
   end
+
+  def filter_by_query
+    @clients = @clients.ransack(corporateName_or_fantasyName_or_name_cont: params[:q]).result  
+  end 
 
   private
     # Use callbacks to share common setup or constraints between actions.

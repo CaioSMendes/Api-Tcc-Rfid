@@ -53,7 +53,7 @@ namespace :dev do
     p "Cadastrando categorias"
     30.times do |i|
       Categorie.create!(
-        name: Faker::Lorem.word,
+        name: Faker::Company.suffix,
         codCategorie: Faker::Number.number(digits: 10)
       )
     end
