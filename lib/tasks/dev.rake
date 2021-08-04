@@ -107,6 +107,14 @@ namespace :dev do
         provider: Provider.all.sample,
         tax: Tax.all.sample
     )
+    end
+    p "Cadastrando Carteira"
+    30.times do |i|
+      Wallet.create!(
+        total: Faker::Number.decimal(l_digits: 2),
+        sell: Sell.all.sample,
+        buy: Buy.all.sample
+    )
     end 
     puts "Finalizado com sucesso"
   end

@@ -130,7 +130,7 @@ rails g migration add_address_to_provider address:references
     rails g scaffold Tax shipping:float costAdd:float ipi:float icms:float
     - rails g migration add_tax_to_sell tax:references
     - rails g migration add_tax_to_buy tax:references
-    
+
     p "Cadastrando Taxas"
         30.times do |i|
           Tax.create!(
@@ -140,11 +140,28 @@ rails g migration add_address_to_provider address:references
             icms Faker::Number.decimal(l_digits: 2)
         )
         end 
+
+        7 passo
+        rails g scaffold Wallet buy:float sell:float total:float 
+        rails g migration add_sell_to_wallet sell:references
+        rails g migration add_buy_to_wallet buy:references
+
+p "Cadastrando Carteira"
+    30.times do |i|
+      Wallet.create!(
+        buy: Faker::Number.decimal(l_digits: 2),
+        sell: Faker::Number.decimal(l_digits: 2),
+        total: Faker::Number.decimal(l_digits: 2),
+        sell: Sell.all.sample,
+        buy: Buy.all.sample
+    )
+    end 
+
 upar no git 
 
 1 - git add .
 2- git commit -m "comentario"
-3- git push --set-upstream origin providers
+3- git push --set-ugitpstream origin providers
 
 bundle exec erd -> gerar pdf com BD 
 

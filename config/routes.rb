@@ -8,5 +8,6 @@ Rails.application.routes.draw do
     resources :buys
     resources :sells
     resources :taxes
+    resources :wallets
   end
 end

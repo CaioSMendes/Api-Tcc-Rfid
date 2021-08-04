@@ -3,7 +3,6 @@ class Sell < ApplicationRecord
     belongs_to :client
     belongs_to :tax
 
-
     def name_product
         self.product.name
     end
@@ -40,11 +39,15 @@ class Sell < ApplicationRecord
         self.tax.description
     end
 
+    def total_wallet
+        self.wallet.total
+    end
+
     def as_json(options={})
         super(
             root: true,
             methods: [:name_product, :corporateName_client, :fantasyName_client, :cnpj_client,
-            :shipping_tax, :costAdd_tax, :ipi_tax, :icms_tax, :description_tax]
+            :shipping_tax, :costAdd_tax, :ipi_tax, :icms_tax, :description_tax, :total_wallet]
         )
     end
 end
