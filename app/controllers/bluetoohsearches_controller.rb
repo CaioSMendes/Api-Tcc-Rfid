@@ -4,7 +4,7 @@ class BluetoohsearchesController < ApplicationController
   # GET /bluetoohsearches
   def index
     @bluetoohsearches = Bluetoohsearch.all
-
+    filter_by_query if params[:q]
     render json: @bluetoohsearches
   end
 
@@ -37,6 +37,10 @@ class BluetoohsearchesController < ApplicationController
   def destroy
     @bluetoohsearch.destroy
   end
+
+  def filter_by_query
+    @bluetoohsearches = @bluetoohsearches.ransack(rfidCode_cont: params[:q]).result  
+  end 
 
   private
     # Use callbacks to share common setup or constraints between actions.
