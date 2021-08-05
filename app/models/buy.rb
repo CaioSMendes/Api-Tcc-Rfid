@@ -3,6 +3,8 @@ class Buy < ApplicationRecord
     belongs_to :provider
     belongs_to :tax
 
+    validates :price, :quantity, presence: true
+
     def name_product
         self.product.name
     end

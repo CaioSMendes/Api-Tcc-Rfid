@@ -3,6 +3,8 @@ class Sell < ApplicationRecord
     belongs_to :client
     belongs_to :tax
 
+    validates :price, :quantity, presence: true
+
     def name_product
         self.product.name
     end

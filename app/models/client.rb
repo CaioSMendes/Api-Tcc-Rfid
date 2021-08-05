@@ -1,6 +1,8 @@
 class Client < ApplicationRecord
     belongs_to :address
 
+    validates :corporateName, :name, :phone, :cnpj, :email, presence: true
+
     def city_address
         self.address.city
     end

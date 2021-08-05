@@ -1,6 +1,8 @@
 class Provider < ApplicationRecord
     belongs_to :address
 
+    validates :corporateName, :fantasyName, :phone, :cnpj, :email, presence: true
+
     def city_address
         self.address.city
     end
