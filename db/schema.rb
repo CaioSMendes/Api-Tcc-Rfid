@@ -175,6 +175,7 @@ ActiveRecord::Schema.define(version: 2021_08_05_124744) do
     t.string "unconfirmed_email"
     t.string "name"
     t.string "nickname"
+    t.string "companyName"
     t.string "image"
     t.string "email"
     t.json "tokens"
