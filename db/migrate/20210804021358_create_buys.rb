@@ -7,7 +7,7 @@ class CreateBuys < ActiveRecord::Migration[6.0]
       t.float :discount
       t.float :measurement
       t.text :description
-      t.float :buy
+      t.float :totbuy
 
       t.timestamps
     end

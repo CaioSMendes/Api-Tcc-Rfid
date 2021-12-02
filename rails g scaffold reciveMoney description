@@ -31,6 +31,8 @@ rails g migration add_buy_to_product buy:references
 rails g migration add_sell_to_product sell:references
 rails g migration add_bluetoohsearch_to_product bluetoohsearch:references
 
+
+
 rails g scaffold Categorie name:string codCategorie:string
 rails g scaffold Provider corporateName:string fantasyName:string phone:string cnpj:string stateRegistration:string email:string type:string codeProvider:string
 rails g scaffold Buy price:float quantity:integer nameProduct dateBuy:date discount:float measurement:float description:text ipi:float icms:float shipping:float costAdd:float

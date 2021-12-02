@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_05_124744) do
+ActiveRecord::Schema.define(version: 2021_12_02_000211) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -63,12 +63,12 @@ ActiveRecord::Schema.define(version: 2021_08_05_124744) do
     t.float "discount"
     t.float "measurement"
     t.text "description"
-    t.float "buy"
+    t.float "totbuy"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "product_id", null: false
     t.bigint "provider_id", null: false
     t.bigint "tax_id", null: false
+    t.bigint "product_id", null: false
     t.index ["product_id"], name: "index_buys_on_product_id"
     t.index ["provider_id"], name: "index_buys_on_provider_id"
     t.index ["tax_id"], name: "index_buys_on_tax_id"
@@ -113,7 +113,7 @@ ActiveRecord::Schema.define(version: 2021_08_05_124744) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "categorie_id", null: false
-    t.bigint "provider_id"
+    t.bigint "provider_id", null: false
     t.index ["categorie_id"], name: "index_products_on_categorie_id"
     t.index ["provider_id"], name: "index_products_on_provider_id"
   end
@@ -140,7 +140,7 @@ ActiveRecord::Schema.define(version: 2021_08_05_124744) do
     t.float "discount"
     t.float "measurement"
     t.text "description"
-    t.float "sell"
+    t.float "totsell"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "product_id", null: false
@@ -191,10 +191,6 @@ ActiveRecord::Schema.define(version: 2021_08_05_124744) do
     t.float "total"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "sell_id", null: false
-    t.bigint "buy_id", null: false
-    t.index ["buy_id"], name: "index_wallets_on_buy_id"
-    t.index ["sell_id"], name: "index_wallets_on_sell_id"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
@@ -209,6 +205,4 @@ ActiveRecord::Schema.define(version: 2021_08_05_124744) do
   add_foreign_key "sells", "clients"
   add_foreign_key "sells", "products"
   add_foreign_key "sells", "taxes"
-  add_foreign_key "wallets", "buys"
-  add_foreign_key "wallets", "sells"
 end

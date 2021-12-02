@@ -7,7 +7,7 @@ class CreateSells < ActiveRecord::Migration[6.0]
       t.float :discount
       t.float :measurement
       t.text :description
-      t.float :sell
+      t.float :totsell
 
       t.timestamps
     end

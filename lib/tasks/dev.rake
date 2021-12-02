@@ -2,7 +2,7 @@ namespace :dev do
   desc "TODO"
   task setup: :environment do
     p "Cadastrando Taxas"
-    30.times do |i|
+    60.times do |i|
       Tax.create!(
         shipping: Faker::Number.decimal(l_digits: 2),
         costAdd: Faker::Number.decimal(l_digits: 2),
@@ -12,7 +12,7 @@ namespace :dev do
     )
     end 
     p "Cadastrando Enderecos"
-    30.times do |i|
+    60.times do |i|
       Address.create!(
         city: Faker::Address.city,
         street: Faker::Address.street_name,
@@ -24,7 +24,7 @@ namespace :dev do
     )
     end
     p "Cadastrando Clientes"
-    30.times do |i|
+    60.times do |i|
       Client.create!(
         corporateName: Faker::Company.name,
         fantasyName: Faker::Company.industry,
@@ -37,7 +37,7 @@ namespace :dev do
     )
     end 
     p "Cadastrando Fornecedores"
-    30.times do |i|
+    60.times do |i|
       Provider.create!(
         corporateName: Faker::Company.name,
         fantasyName: Faker::Company.industry,
@@ -51,14 +51,14 @@ namespace :dev do
     )
     end 
     p "Cadastrando categorias"
-    30.times do |i|
+    60.times do |i|
       Categorie.create!(
         name: Faker::Company.suffix,
         codCategorie: Faker::Number.number(digits: 10)
       )
     end
     p "Cadastrando Produtos"
-    30.times do |i|
+    60.times do |i|
       Product.create!(
         name: Faker::ElectricalComponents.active,
         description: Faker::ElectricalComponents.electromechanical,
@@ -79,7 +79,7 @@ namespace :dev do
     )
     end
     p "Cadastrando Vendas"
-    30.times do |i|
+    60.times do |i|
       Sell.create!(
         price: Faker::Commerce.price,
         quantity: Faker::Number.between(from: 1, to: 500),
@@ -87,14 +87,13 @@ namespace :dev do
         discount: Faker::Number.between(from: 10, to: 100),
         measurement: Faker::Measurement.height,
         description: Faker::ElectricalComponents.electromechanical,
-        sell: Faker::Number.between(from: 1, to: 500),
         product: Product.all.sample,
         client: Client.all.sample,
         tax: Tax.all.sample
     )
     end 
     p "Cadastrando Compras"
-    30.times do |i|
+    60.times do |i|
       Buy.create!(
         price: Faker::Commerce.price,
         quantity: Faker::Number.between(from: 1, to: 500),
@@ -102,22 +101,19 @@ namespace :dev do
         discount: Faker::Number.between(from: 10, to: 100),
         measurement: Faker::Measurement.height,
         description: Faker::ElectricalComponents.electromechanical,
-        buy: Faker::Number.between(from: 1, to: 500),
         product: Product.all.sample,
         provider: Provider.all.sample,
         tax: Tax.all.sample
     )
     end
     p "Cadastrando Carteira"
-    30.times do |i|
+    60.times do |i|
       Wallet.create!(
-        total: Faker::Number.decimal(l_digits: 2),
-        sell: Sell.all.sample,
-        buy: Buy.all.sample
+        total: Faker::Number.decimal(l_digits: 2)
     )
     end 
     p "Cadastrando Buscas para o Bluetooh"
-    30.times do |i|
+    60.times do |i|
       Bluetoohsearch.create!(
         rfidCode: Faker::Barcode.upc_e,
         product: Product.all.sample
@@ -126,4 +122,3 @@ namespace :dev do
     puts "Finalizado com sucesso"
   end
 end
-
