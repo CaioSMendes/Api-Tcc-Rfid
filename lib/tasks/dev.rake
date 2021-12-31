@@ -61,19 +61,13 @@ namespace :dev do
     60.times do |i|
       Product.create!(
         name: Faker::ElectricalComponents.active,
-        description: Faker::ElectricalComponents.electromechanical,
+        price: Faker::Commerce.price,
         quantity: Faker::Number.between(from: 1, to: 500),
         unity: Faker::Measurement.height,
-        price: Faker::Commerce.price,
-        date: Faker::Date.in_date_period ,
+        description: Faker::ElectricalComponents.electromechanical,
         productCode: Faker::Barcode.ismn,
         gtin: Faker::Barcode.ean(13),
         rfid: Faker::Barcode.upc_e,
-        productMin: Faker::Number.between(from: 1, to: 10),
-        productMax: Faker::Number.between(from: 10, to: 100),
-        salePrice: Faker::Commerce.price,
-        saleCost: Faker::Commerce.price,
-        avaliable: Faker::Number.between(from: 10, to: 100),
         categorie: Categorie.all.sample,
         provider: Provider.all.sample
     )

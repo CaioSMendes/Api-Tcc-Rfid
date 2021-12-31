@@ -179,7 +179,11 @@ upar no git
 
 bundle exec erd -> gerar pdf com BD 
 
-rails dev:setup  -> rodar task seed
+rails dev:setup  -> rodar task seed dentro do rails 
+***** RODAR NO HEROKU *****
+- procurar console e ir em bash
+- rodar rake db:migrate - para criar as migrations
+- rake dev:setup para popular o banco no heroku
 
 
 

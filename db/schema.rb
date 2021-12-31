@@ -97,19 +97,13 @@ ActiveRecord::Schema.define(version: 2021_12_02_000211) do
 
   create_table "products", force: :cascade do |t|
     t.string "name"
-    t.text "description"
+    t.float "price"
     t.integer "quantity"
     t.string "unity"
-    t.float "price"
-    t.date "date"
+    t.text "description"
     t.string "productCode"
     t.string "gtin"
     t.string "rfid"
-    t.integer "productMin"
-    t.integer "productMax"
-    t.float "salePrice"
-    t.float "saleCost"
-    t.string "avaliable"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "categorie_id", null: false
